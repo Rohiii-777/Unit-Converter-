@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Area Converter</title>
+    <link href="style.css" rel="stylesheet">
+   </head>
+<body>
+    
+       <header><h1>Area Converter</h1></header> 
+        <main>
+        <form>
+            
+            <label for="fromValue">Value:</label>
+            <input type="number" id="fromValue" name="fromValue">
+
+            <label for="fromUnit">From:</label>
+            <select id="fromUnit">
+                <option value="sqm">Square meters (sqm)</option>
+                <option value="sqft">Square feet (sqft)</option>
+                <option value="ac">Acres (ac)</option>
+                <option value="ha">Hectares (ha)</option>
+            </select>
+
+
+            <label for="toUnit">To:</label>
+            <select id="toUnit">
+                <option value="sqm">Square meters (sqm)</option>
+                <option value="sqft">Square feet (sqft)</option>
+                <option value="ac">Acres (ac)</option>
+                <option value="ha">Hectares (ha)</option>
+            </select>
+
+          
+
+            <button type="button" value="Convert" onclick="convert()">Convert</button>
+            <p id="result"></p>
+
+        </form>
+
+   </main>
+<script>function convert() {
+    const fromUnit = document.getElementById('fromUnit').value;
+    const fromValue = document.getElementById('fromValue').value;
+    const toUnit = document.getElementById('toUnit').value;
+
+    let result;
+
+    if (fromUnit === 'sqm') {
+        if (toUnit === 'sqft') {
+            result = fromValue * 10.7639;
+        } else if (toUnit === 'ac') {
+            result = fromValue * 0.000247105;
+        } else if (toUnit === 'ha') {
+            result = fromValue * 0.0001;
+        } else {
+            result = fromValue;
+        }
+    } else if (fromUnit === 'sqft') {
+        if (toUnit === 'sqm') {
+            result = fromValue / 10.7639;
+        } else if (toUnit === 'ac') {
+            result = fromValue * 0.0000229568;
+        } else if (toUnit === 'ha') {
+            result = fromValue * 0.0000092903;
+        } else {
+            result = fromValue;
+        }
+    } else if (fromUnit === 'ac') {
+        if (toUnit === 'sqm') {
+            result = fromValue * 4046.86;
+        } else if (toUnit === 'sqft') {
+            result = fromValue * 43560;
+        } else if (toUnit === 'ha') {
+            result = fromValue * 0.404686;
+        } else {
+            result = fromValue;
+        }
+    } else if (fromUnit === 'ha') {
+        if (toUnit === 'sqm') {
+            result = fromValue * 10000;
+        } else if (toUnit === 'sqft') {
+            result = fromValue * 107639.1056;
+        } else if (toUnit === 'ac') {
+            result = fromValue * 2.47105;
+        } else {
+            result = fromValue;
+        }
+    }
+
+    document.getElementById('result').innerHTML = `${fromValue} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+}
+</script>
+   </body>
+   </html>

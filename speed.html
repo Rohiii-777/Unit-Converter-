@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Speed Converter</title>
+        <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <header><h1>Speed Converter</h1></header>
+
+    <main>
+      <form>
+        <label for="inputValue">Value:</label>
+    <input type="number" id="inputValue">
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+      <option value="metersPerSecond">Meters per Second</option>
+      <option value="kilometersPerHour">Kilometers per Hour</option>
+      <option value="milesPerHour">Miles per Hour</option>
+      <option value="feetPerSecond">Feet per Second</option>
+    </select>
+    
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+      <option value="metersPerSecond">Meters per Second</option>
+      <option value="kilometersPerHour">Kilometers per Hour</option>
+      <option value="milesPerHour">Miles per Hour</option>
+      <option value="feetPerSecond">Feet per Second</option>
+    </select>
+    
+    
+    
+    <button type="button" onclick="convert()">Convert</button>
+    
+    </form>
+    <p id="result"></p>
+  </main>
+    <script>function convert() {
+      const fromUnit = document.getElementById("fromUnit").value;
+      const toUnit = document.getElementById("toUnit").value;
+      const inputValue = document.getElementById("inputValue").value;
+    
+      let result;
+    
+      switch (fromUnit) {
+        case "metersPerSecond":
+          switch (toUnit) {
+            case "kilometersPerHour":
+              result = inputValue * 3.6;
+              break;
+            case "milesPerHour":
+              result = inputValue * 2.23694;
+              break;
+            case "feetPerSecond":
+              result = inputValue * 3.28084;
+              break;
+            default:
+              result = inputValue;
+              break;
+          }
+          break;
+        case "kilometersPerHour":
+          switch (toUnit) {
+            case "metersPerSecond":
+              result = inputValue / 3.6;
+              break;
+            case "milesPerHour":
+              result = inputValue / 1.60934;
+              break;
+            case "feetPerSecond":
+              result = inputValue / 1.09728;
+              break;
+            default:
+              result = inputValue;
+              break;
+          }
+          break;
+        case "milesPerHour":
+          switch (toUnit) {
+            case "metersPerSecond":
+              result = inputValue / 2.23694;
+              break;
+            case "kilometersPerHour":
+              result = inputValue * 1.60934;
+              break;
+            case "feetPerSecond":
+              result = inputValue * 1.46667;
+              break;
+            default:
+              result = inputValue;
+              break;
+          }
+          break;
+        case "feetPerSecond":
+          switch (toUnit) {
+            case "metersPerSecond":
+              result = inputValue / 3.28084;
+              break;
+            case "kilometersPerHour":
+              result = inputValue * 1.09728;
+              break;
+            case "milesPerHour":
+              result = inputValue / 1.46667;
+              break;
+            default:
+              result = inputValue;
+              break;
+          }
+          break;
+        default:
+          result = inputValue;
+          break;
+      }
+    
+      document.getElementById("result").innerHTML = `${inputValue} ${fromUnit} is ${result.toFixed(5)} ${toUnit}`;
+    }
+  </script>
+  </body>
+</html>

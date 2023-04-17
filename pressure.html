@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pressure Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h1>Pressure Converter</h1></header>
+    <main>
+      <form>
+        <input type="number" id="fromValue" placeholder="Enter value">
+       
+            <label for="fromUnit">From:</label>
+            <select id="fromUnit">
+                <option value="psi">Pounds/SquareInch(psi)</option>
+                <option value="kpa">KiloPasal(kPa)</option>
+                <option value="bar">Bar</option>
+            </select>
+        
+            <label for="toUnit">To:</label>
+            <select id="toUnit">
+                <option value="psi">Pounds/SquareInch(psi)</option>
+                <option value="kpa">KiloPasal(kPa)</option>
+                <option value="bar">Bar</option>
+            </select>
+                <button type="button" onclick="convertPressure()">Convert</button>
+  <p id="result"></p>
+            </form>
+  </main>
+  <script>function convertPressure() {
+    const fromUnit = document.getElementById('fromUnit').value;
+    const fromValue = document.getElementById('fromValue').value;
+    const toUnit = document.getElementById('toUnit').value;
+  
+    let result;
+  
+    if (fromUnit === 'psi') {
+        if (toUnit === 'kpa') {
+            result = fromValue * 6.89476;
+        } else if (toUnit === 'bar') {
+            result = fromValue * 0.0689476;
+        } else {
+            result = fromValue;
+        }
+    } else if (fromUnit === 'kpa') {
+        if (toUnit === 'psi') {
+            result = fromValue * 0.145038;
+        } else if (toUnit === 'bar') {
+            result = fromValue * 0.01;
+        } else {
+            result = fromValue;
+        }
+    } else if (fromUnit === 'bar') {
+        if (toUnit === 'psi') {
+            result = fromValue * 14.5038;
+        } else if (toUnit === 'kpa') {
+            result = fromValue * 100;
+        } else {
+            result = fromValue;
+        }
+    }
+  
+    document.getElementById('result').innerHTML = `${fromValue} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+  }
+  </script>
+</body>
+</html>

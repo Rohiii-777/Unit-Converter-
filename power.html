@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Power Converter</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header><h1>Power Converter</h1></header>
+	<main>
+		<form>
+	<label>Enter Value:</label>
+	<input type="number" id="inputValue" placeholder="Enter Value" required>
+	
+	<label>From :</label>
+	<select id="from">
+		<option value="watts">Watts</option>
+		<option value="kilowatts">Kilowatts</option>
+		<option value="horsepower">Horsepower</option>
+	</select>
+	
+	<label>To :</label>
+	<select id="to">
+		<option value="watts">Watts</option>
+		<option value="kilowatts">Kilowatts</option>
+		<option value="horsepower">Horsepower</option>
+	</select>
+	
+	<button type="button" onclick="convert()">Convert</button>
+
+
+
+	<p id="result"></p>
+</form>
+	</main>
+	<script>
+		function convert() {
+			const from = document.getElementById("from").value;
+			const to = document.getElementById("to").value;
+			const inputValue = document.getElementById("inputValue").value;
+			let result;
+
+			if (from === "watts") {
+				if (to === "kilowatts") {
+					result = inputValue / 1000;
+				} else if (to === "horsepower") {
+					result = inputValue / 746;
+				} else {
+					result = inputValue;
+				}
+			} else if (from === "kilowatts") {
+				if (to === "watts") {
+					result = inputValue * 1000;
+				} else if (to === "horsepower") {
+					result = inputValue * 1.341;
+				} else {
+					result = inputValue;
+				}
+			} else if (from === "horsepower") {
+				if (to === "watts") {
+					result = inputValue * 746;
+				} else if (to === "kilowatts") {
+					result = inputValue / 1.341;
+				} else {
+					result = inputValue;
+				}
+			}
+
+			document.getElementById("result").innerHTML = result + " " + to;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mass Converter</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Mass Converter</h1>
+	</header>
+
+	<main>
+		<form>
+			<label for="mass">Mass:</label>
+			<input type="number" id="mass" name="mass" required>
+
+			<label for="fromUnit">From:</label>
+			<select id="fromUnit" name="fromUnit">
+				<option valuekilogram"=">Kilogram</option>
+				<option value="gram">Gram</option>
+				<option value="milligram">Milligram (mg)</option>
+				<option value="microgram">Microgram (µg)</option>
+				<option value="pound">Pound (lb)</option>
+				<option value="ounce">Ounce (oz)</option>
+				<option value="tonne">Tonne (t)</option>
+				<option value="quintal">Quintal (q)</option>
+				<option value="carat">Carat (ct)</option>
+				
+			</select>
+
+			<label for="toUnit">To:</label>
+			<select id="toUnit" name="toUnit">
+				<option value="kilogram">Kilogram</option>
+				<option value="gram">Gram</option>
+				<option value="milligram">Milligram (mg)</option>
+				<option value="microgram">Microgram (µg)</option>
+				<option value="pound">Pound (lb)</option>
+				<option value="ounce">Ounce (oz)</option>
+				<option value="tonne">Tonne (t)</option>
+				<option value="quintal">Quintal (q)</option>
+				<option value="carat">Carat (ct)</option>
+
+			</select>
+
+			<button type="button" onclick="convert()">Convert</button>
+	
+
+		<p id="result"></p>
+		</form>
+	</main>
+
+	<script>function convert() {
+		// Get input values
+		const mass = parseFloat(document.getElementById("mass").value);
+		const fromUnit = document.getElementById("fromUnit").value;
+		const toUnit = document.getElementById("toUnit").value;
+	  
+		// Convert to grams
+		let grams;
+		switch (fromUnit) {
+		  case "kilogram":
+			grams = mass * 1000;
+			break;
+		  case "pound":
+			grams = mass * 453.592;
+			break;
+		  case "ounce":
+			grams = mass * 28.3495;
+			break;
+		  case "gram":
+			grams = mass;
+			break;
+		  case "milligram":
+			grams = mass * 0.001;
+			break;
+		  case "microgram":
+			grams = mass * 0.000001;
+			break;
+		  case "quintal":
+			grams = mass * 100000;
+			break;
+		  case "carat":
+			grams = mass * 0.2;
+			break;
+		  case "tonne":
+			grams = mass * 1000000;
+			break;
+		  default:
+			grams = mass;
+		}
+	  
+		// Convert from grams to target unit
+		let result;
+		switch (toUnit) {
+		  case "kilogram":
+			result = grams / 1000;
+			break;
+		  case "pound":
+			result = grams / 453.592;
+			break;
+		  case "ounce":
+			result = grams / 28.3495;
+			break;
+		  case "gram":
+			result = grams;
+			break;
+		  case "milligram":
+			result = grams / 0.001;
+			break;
+		  case "microgram":
+			result = grams / 0.000001;
+			break;
+		  case "quintal":
+			result = grams / 100000;
+			break;
+		  case "carat":
+			result = grams / 0.2;
+			break;
+		  case "tonne":
+			result = grams / 1000000;
+			break;
+		  default:
+			result = grams;
+		}
+	  
+		// Display result
+		document.getElementById("result").innerHTML = `${mass} ${fromUnit} is ${result.toFixed(5)} ${toUnit}`;
+	  }
+	</script>
+</body>
+</html>

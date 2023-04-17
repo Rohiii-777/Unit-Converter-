@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Currency Converter</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+<body>
+	<header>
+		<h1>Currency Converter</h1>
+	</header>
+
+	<main>
+		<form>
+			<label for="amount">Amount:</label>
+			<input type="number" id="amount" name="amount" required>
+
+			<label for="fromCurrency">From:</label>
+			<select id="fromCurrency" name="fromCurrency">
+				<option value="USD">USD</option>
+				<option value="EUR">EUR</option>
+				<option value="GBP">GBP</option>
+				<option value="JPY">JPY</option>
+				<option value="CAD">CAD</option>
+				<option value="AUD">AUD</option>
+				<option value="CHF">CHF</option>
+				<option value="CNY">CNY</option>
+				<option value="INR">INR</option>
+				<option value="SGD">SGD</option>
+			</select>
+
+			<label for="toCurrency">To:</label>
+			<select id="toCurrency" name="toCurrency">
+				<option value="USD">USD</option>
+				<option value="EUR">EUR</option>
+				<option value="GBP">GBP</option>
+				<option value="JPY">JPY</option>
+				<option value="CAD">CAD</option>
+				<option value="AUD">AUD</option>
+				<option value="CHF">CHF</option>
+				<option value="CNY">CNY</option>
+				<option value="INR">INR</option>
+				<option value="SGD">SGD</option>
+			</select>
+
+			<button type="button" onclick="convert()">Convert</button>
+		
+
+		<p id="result"></p>
+		</form>
+	</main>
+
+	<script>function convert() {
+		// Get input values
+		const amount = parseFloat(document.getElementById("amount").value);
+		const fromCurrency = document.getElementById("fromCurrency").value;
+		const toCurrency = document.getElementById("toCurrency").value;
+	  
+		// Conversion rates
+		const conversionRates = {
+		  USD: {
+			EUR: 0.85,
+			GBP: 0.73,
+			INR: 74.15,
+			JPY: 110.58,
+			CNY: 6.47,
+		  },
+		  EUR: {
+			USD: 1.18,
+			GBP: 0.86,
+			INR: 87.19,
+			JPY: 130.29,
+			CNY: 7.66,
+		  },
+		  GBP: {
+			USD: 1.38,
+			EUR: 1.16,
+			INR: 100.25,
+			JPY: 149.74,
+			CNY: 8.81,
+		  },
+		  INR: {
+			USD: 0.013,
+			EUR: 0.011,
+			GBP: 0.01,
+			JPY: 1.49,
+			CNY: 0.088,
+		  },
+		  JPY: {
+			USD: 0.009,
+			EUR: 0.008,
+			GBP: 0.007,
+			INR: 0.67,
+			CNY: 0.059,
+		  },
+		  CNY: {
+			USD: 0.15,
+			EUR: 0.13,
+			GBP: 0.11,
+			INR: 11.39,
+			JPY: 16.92,
+		  },
+		};
+	  
+		// Convert amount
+		const result = amount * conversionRates[fromCurrency][toCurrency];
+	  
+		// Display result
+		document.getElementById("result").innerHTML = `${amount} ${fromCurrency} is ${result.toFixed(4)} ${toCurrency}`;
+	  }
+	  </script>
+</body>
+</html>

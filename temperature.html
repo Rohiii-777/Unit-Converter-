@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Temperature Converter</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Temperature Converter</h1>
+	</header>
+
+	<main>
+		<form>
+			<label for="temperature">Temperature:</label>
+			<input type="number" id="temperature" name="temperature" required>
+
+			<label for="fromUnit">From:</label>
+			<select id="fromUnit" name="fromUnit">
+				<option value="Celsius">Celsius</option>
+				<option value="Fahrenheit">Fahrenheit</option>
+				<option value="Kelvin">Kelvin</option>
+				<option value="Rankine">Rankine</option>
+				<option value="Reaumur">Reaumur</option>
+			</select>
+
+			<label for="toUnit">To:</label>
+			<select id="toUnit" name="toUnit">
+				<option value="Celsius">Celsius</option>
+				<option value="Fahrenheit">Fahrenheit</option>
+				<option value="Kelvin">Kelvin</option>
+				<option value="Rankine">Rankine</option>
+				<option value="Reaumur">Reaumur</option>
+			</select>
+
+			<button type="button" onclick="convert()">Convert</button>
+		</form>
+
+		<p id="result"></p>
+	</main>
+
+	<script>function convert() {
+		// Get input values
+		const temperature = parseFloat(document.getElementById("temperature").value);
+		const fromUnit = document.getElementById("fromUnit").value;
+		const toUnit = document.getElementById("toUnit").value;
+	  
+		// Convert to Celsius
+		let celsius;
+		switch (fromUnit) {
+		  case "Celsius":
+			celsius = temperature;
+			break;
+		  case "Fahrenheit":
+			celsius = (temperature - 32) / 1.8;
+			break;
+		  case "Kelvin":
+			celsius = temperature - 273.15;
+			break;
+		  case "Rankine":
+			celsius = (temperature - 491.67) / 1.8;
+			break;
+		  case "Reaumur":
+			celsius = temperature / 0.8;
+			break;
+		}
+	  
+		// Convert from Celsius to target unit
+		let result;
+		switch (toUnit) {
+		  case "Celsius":
+			result = celsius;
+			break;
+		  case "Fahrenheit":
+			result = celsius * 1.8 + 32;
+			break;
+		  case "Kelvin":
+			result = celsius + 273.15;
+			break;
+		  case "Rankine":
+			result = (celsius + 273.15) * 1.8;
+			break;
+		  case "Reaumur":
+			result = celsius * 0.8;
+			break;
+		}
+	  
+		// Display result
+		document.getElementById("result").innerHTML = `${temperature} ${fromUnit} is ${result.toFixed(2)} ${toUnit}`;
+	  }
+	  </script>
+</body>
+</html>
